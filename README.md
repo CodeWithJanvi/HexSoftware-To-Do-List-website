@@ -39,3 +39,21 @@ You can view the live demo here:
 
 ```bash
 git clone https://github.com/CodeWithJanvi/hexsoftware-todo-list.git
+
+## Usage
+
+Click "Add Task" to create a new task.
+
+Use the category sidebar to filter tasks by status.
+
+Click the star icon to mark a task as important.
+
+Click the check icon to mark a task as completed.
+
+Use the calendar view to see tasks scheduled for a specific date.
+
+Toggle dark/light mode using the button in the navbar.
+
+Tasks are automatically saved in your browser localStorage, so they persist across page reloads.
+
+---
