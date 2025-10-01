@@ -41,8 +41,7 @@ You can view the live demo here:
 git clone https://github.com/CodeWithJanvi/hexsoftware-todo-list.git
 
 ---
-
-## Usage
+## usage
 
 Click "Add Task" to create a new task.
 
