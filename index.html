@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="assets/img/logos.png" />
+  <title>HexSoftware | To-Do-List Task</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="HexSoftware Company - To-Do List Website" />
+</head>
+<body>
+  <!-- Loader Section -->
+  <div id="loader-screen" class="loader-screen d-flex justify-content-center align-items-center">
+    <div class="text-center">
+      <div class="loader-logo mb-3">
+        <img src="assets/img/logos.png" alt="HexSoftware Logo" class="img-fluid" style="max-width: 120px;">
+      </div>
+      <h2 class="mb-2">Welcome to HexSoftware Company Internship's First Project</h2>
+      <p class="lead">Task 1: To-Do List Website Project</p>
+      <small class="text-muted">Loading... please wait</small>
+      <div class="loader-spinner mb-3" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="app" class="d-none">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <div class="brand-logo rounded-2">
+            <img src="assets/img/logos.png" alt="HexSoftware Logo" style="height:40px; width:auto;">
+          </div>
+          <div class="d-flex flex-column">
+            <strong>HexSoftware</strong>
+            <div class="small text-muted text-center w-100">To Do List Project</div>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item me-2">
+              <button id="themeToggle" class="btn btn-outline-secondary btn-sm">
+                <i class="fa fa-moon"></i> Dark Mode
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#taskModal">
+                <i class="fa fa-plus"></i> Add Task
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row g-3 my-4">
+        <!-- Sidebar / Categories -->
+        <div class="col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body p-3">
+              <h5 class="card-title">Categories</h5>
+              <div class="list-group">
+                <button class="list-group-item list-group-item-action category-btn active" data-cat="all">All Tasks</button>
+                <button class="list-group-item list-group-item-action category-btn" data-cat="pending">Pending</button>
+                <button class="list-group-item list-group-item-action category-btn" data-cat="completed">Completed</button>
+                <button class="list-group-item list-group-item-action category-btn" data-cat="starred">Starred</button>
+                <button class="list-group-item list-group-item-action category-btn" data-cat="calendar">Calendar</button>
+              </div>
+              <hr>
+              <div class="small text-muted">
+                <p class="mb-1"><strong>✅ Project | Features</strong></p>
+                <p class="mb-3">
+                  ✔ Organize tasks with clear goals. <br>
+                  ✔ Track pending & completed work. <br>
+                  ✔ Fast, simple, and reliable. <br>
+                  ✔ Get more done every day!<br>
+                  ✔ Lightweight, modern, and user-friendly. <br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Task Area -->
+        <div class="col-lg-9">
+          <div id="mainCards" class="row g-3"></div>
+
+          <!-- Calendar View -->
+          <div id="calendarView" class="card shadow-sm mt-3 d-none">
+            <div class="card-body">
+              <h5>Calendar View</h5>
+              <p class="small text-muted">Select a date to view tasks scheduled for that date.</p>
+              <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-4">
+                  <input id="calendarDate" type="date" class="form-control">
+                </div>
+                <div class="col-md-8 text-end">
+                  <button id="todayBtn" class="btn btn-outline-secondary btn-sm">Today</button>
+                </div>
+              </div>
+              <div id="calendarTasks" class="row g-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-3 border-top">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>©2025 <strong>HexSoftware Company</strong> — All rights reserved.</div>
+        <div class="small text-muted">Made with <i class="fa fa-heart text-danger"></i> by Janvi Lumbhani</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Add/Edit Task Modal -->
+  <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form id="taskForm">
+          <div class="modal-header">
+            <h5 id="taskModalTitle" class="modal-title">Add Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="taskId">
+            <div class="mb-3">
+              <label class="form-label">Title <span class="text-danger">*</span></label>
+              <input id="taskTitle" class="form-control" required maxlength="120">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea id="taskDesc" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Due Date</label>
+                <input id="taskDate" type="date" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Time</label>
+                <input id="taskTime" type="time" class="form-control">
+              </div>
+            </div>
+            <div class="form-check form-switch mt-3">
+              <input class="form-check-input" id="taskImportant" type="checkbox">
+              <label class="form-check-label">Mark as Important (Star)</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="saveTaskBtn" type="submit" class="btn btn-primary">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center py-4">
+          <i class="fa fa-trash fa-2x text-danger mb-2"></i>
+          <h6>Delete this task?</h6>
+          <p class="small text-muted">This action cannot be undone.</p>
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button id="confirmDeleteBtn" class="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS + Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("loader-screen");
+  const app = document.getElementById("app");
+
+  setTimeout(() => { loader.classList.add("d-none"); app.classList.remove("d-none"); }, 1000);
+
+  const taskForm = document.getElementById("taskForm");
+  const taskModal = new bootstrap.Modal(document.getElementById("taskModal"));
+  const taskModalTitle = document.getElementById("taskModalTitle");
+  const mainCards = document.getElementById("mainCards");
+  const calendarView = document.getElementById("calendarView");
+  const calendarTasks = document.getElementById("calendarTasks");
+  const calendarDate = document.getElementById("calendarDate");
+  const todayBtn = document.getElementById("todayBtn");
+  const confirmDeleteModal = new bootstrap.Modal(document.getElementById("confirmDeleteModal"));
+  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let editTaskId = null;
+  let deleteTaskId = null;
+  let currentCategory = "all";
+
+  function saveTasks(){ localStorage.setItem("tasks", JSON.stringify(tasks)); }
+
+  function renderTasks(){
+    mainCards.innerHTML = ""; calendarView.classList.add("d-none");
+    let filtered = [...tasks];
+    if(currentCategory==="pending") filtered=filtered.filter(t=>!t.completed);
+    else if(currentCategory==="completed") filtered=filtered.filter(t=>t.completed);
+    else if(currentCategory==="starred") filtered=filtered.filter(t=>t.starred);
+    else if(currentCategory==="calendar"){ calendarView.classList.remove("d-none"); filtered=[]; }
+
+    filtered.forEach(task=>{
+      const card=document.createElement("div");
+      card.className="col-md-6 col-lg-4";
+      card.innerHTML=`
+        <div class="card shadow-sm h-100 ${task.completed?'opacity-75':''}">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="card-title ${task.completed?'text-decoration-line-through':''}">${task.title}</h5>
+              <div>
+                <button class="btn btn-sm ${task.starred?'btn-warning':'btn-outline-warning'} me-1 star-btn"><i class="fa fa-star"></i></button>
+                <button class="btn btn-sm btn-outline-primary me-1 edit-btn"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="fa fa-trash"></i></button>
+              </div>
+            </div>
+            <p class="card-text small flex-grow-1">${task.desc||""}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                ${task.date?`<span class="badge bg-light text-dark"><i class="fa fa-calendar"></i> ${task.date}</span>`:""}
+                ${task.time?`<span class="badge bg-light text-dark"><i class="fa fa-clock"></i> ${task.time}</span>`:""}
+              </div>
+              <button class="btn btn-sm ${task.completed?'btn-success':'btn-outline-success'} complete-btn">
+                <i class="fa ${task.completed?'fa-check-circle':'fa-circle'}"></i>
+              </button>
+            </div>
+          </div>
+        </div>`;
+      mainCards.appendChild(card);
+
+      card.querySelector(".star-btn").addEventListener("click",()=>toggleStar(task.id));
+      card.querySelector(".edit-btn").addEventListener("click",()=>editTask(task.id));
+      card.querySelector(".delete-btn").addEventListener("click",()=>askDelete(task.id));
+      card.querySelector(".complete-btn").addEventListener("click",()=>toggleComplete(task.id));
+    });
+  }
+
+  taskForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const newTask={
+      id:editTaskId!==null?editTaskId:Date.now(),
+      title:document.getElementById("taskTitle").value,
+      desc:document.getElementById("taskDesc").value,
+      date:document.getElementById("taskDate").value,
+      time:document.getElementById("taskTime").value,
+      starred:document.getElementById("taskImportant").checked,
+      completed:false
+    };
+    if(editTaskId!==null){ tasks=tasks.map(t=>t.id===editTaskId?newTask:t); editTaskId=null; }
+    else tasks.push(newTask);
+
+    saveTasks();
+    taskForm.reset();
+    taskModal.hide();
+    taskModalTitle.textContent="Add Task";
+    renderTasks();
+  });
+
+  todayBtn.addEventListener("click",()=>{
+    calendarDate.value=new Date().toISOString().split("T")[0];
+    renderCalendar();
+  });
+  calendarDate.addEventListener("change",renderCalendar);
+
+  function renderCalendar(){
+    calendarTasks.innerHTML="";
+    const date=calendarDate.value;
+    if(!date) return;
+    const filtered=tasks.filter(t=>t.date===date);
+    if(filtered.length===0) calendarTasks.innerHTML=`<p class="text-muted">No tasks for this date.</p>`;
+    else filtered.forEach(task=>{
+      const div=document.createElement("div");
+      div.className="col-md-6";
+      div.innerHTML=`
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h6 class="card-title">${task.title}</h6>
+            <p class="small">${task.desc||""}</p>
+            <span class="badge bg-secondary">${task.time||""}</span>
+          </div>
+        </div>`;
+      calendarTasks.appendChild(div);
+    });
+  }
+
+  document.querySelectorAll(".category-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory=btn.dataset.cat;
+      renderTasks();
+      if(currentCategory==="calendar") renderCalendar();
+    });
+  });
+
+  function askDelete(id){ deleteTaskId=id; confirmDeleteModal.show(); }
+  confirmDeleteBtn.addEventListener("click",()=>{
+    if(deleteTaskId!==null){
+      tasks=tasks.filter(t=>t.id!==deleteTaskId);
+      deleteTaskId=null;
+      saveTasks();
+      renderTasks();
+      confirmDeleteModal.hide();
+    }
+  });
+
+  function editTask(id){
+    const task=tasks.find(t=>t.id===id);
+    if(!task) return;
+    editTaskId=id;
+    taskModalTitle.textContent="Edit Task";
+    document.getElementById("taskId").value=id;
+    document.getElementById("taskTitle").value=task.title;
+    document.getElementById("taskDesc").value=task.desc;
+    document.getElementById("taskDate").value=task.date;
+    document.getElementById("taskTime").value=task.time;
+    document.getElementById("taskImportant").checked=task.starred;
+    taskModal.show();
+  }
+
+  function toggleComplete(id){
+    tasks=tasks.map(t=>t.id===id?{...t,completed:!t.completed}:t);
+    saveTasks(); renderTasks();
+  }
+
+  function toggleStar(id){
+    tasks=tasks.map(t=>t.id===id?{...t,starred:!t.starred}:t);
+    saveTasks(); renderTasks();
+  }
+
+  renderTasks();
+});
+
+// Theme Toggle
+const themeToggle=document.getElementById('themeToggle');
+themeToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('dark-theme');
+  themeToggle.innerHTML=document.body.classList.contains('dark-theme')?'<i class="fa fa-sun"></i> Light Mode':'<i class="fa fa-moon"></i> Dark Mode';
+});
+  </script>
+</body>
+</html>
