@@ -40,6 +40,8 @@ You can view the live demo here:
 ```bash
 git clone https://github.com/CodeWithJanvi/hexsoftware-todo-list.git
 
+---
+
 ## Usage
 
 Click "Add Task" to create a new task.
