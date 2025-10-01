@@ -11,7 +11,7 @@ This project allows users to **add, edit, delete, and manage tasks efficiently**
 
 You can view the live demo here:  
 [GitHub Pages / Demo Link](https://github.com/CodeWithJanvi/HexSoftware-To-Do-List-website.git)
-
+link of website : [https://hex-software-to-do-list-website.vercel.app/]
 ---
 
 ## Features
