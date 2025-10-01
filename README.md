@@ -33,15 +33,7 @@ You can view the live demo here:
 
 ---
 
-## Installation
-
-1. **Clone the repository**:
-
-```bash
-git clone https://github.com/CodeWithJanvi/hexsoftware-todo-list.git
-
----
-## usage
+## Usage
 
 Click "Add Task" to create a new task.
 
@@ -58,3 +50,39 @@ Toggle dark/light mode using the button in the navbar.
 Tasks are automatically saved in your browser localStorage, so they persist across page reloads.
 
 ---
+
+## Author
+
+HexSoftware Company
+
+Made with ❤️ by Janvi Lumbhani
+
+GitHub: https://github.com/CodeWithJanvi/
+
+LinkedIn: https://www.linkedin.com/in/janvi-lumbhani-1580ab2a9/
+
+Contributing
+
+---
+## Technologies Used
+
+HTML5 & CSS3
+
+JavaScript (ES6)
+
+Bootstrap 5
+
+Font Awesome for icons
+
+LocalStorage for task persistence
+
+---
+## Installation
+
+1. **Clone the repository**:
+
+```bash
+git clone https://github.com/CodeWithJanvi/hexsoftware-todo-list.git
+
+---
+
