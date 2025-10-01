@@ -55,7 +55,6 @@ Click the check icon to mark as completed.
 Use the calendar view to see tasks on a specific date.
 
 Toggle dark/light mode using the button in the navbar.
-
 ---
 
 Technologies Used
@@ -69,12 +68,12 @@ Bootstrap 5
 Font Awesome for icons
 
 LocalStorage for task persistence
-
 ---
 License
 
 This project is open-source and available under the MIT License
 ---
+
 Author
 
 HexSoftware Company
@@ -84,6 +83,5 @@ Made with ❤️ by Janvi Lumbhani
 GitHub: https://github.com/CodeWithJanvi/
 
 LinkedIn: https://www.linkedin.com/in/janvi-lumbhani-1580ab2a9/
-
 
 ---
