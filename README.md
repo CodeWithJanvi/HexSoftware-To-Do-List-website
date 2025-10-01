@@ -10,7 +10,7 @@ This project allows users to **add, edit, delete, and manage tasks** efficiently
 ## Demo
 
 You can see the live demo here:  
-[Add your GitHub Pages link or demo URL]
+[https://github.com/CodeWithJanvi/HexSoftware-To-Do-List-website.git]
 
 ---
 
@@ -33,8 +33,6 @@ You can see the live demo here:
 
 ---
 
----
-
 ## Installation
 
 1. Clone the repository:
@@ -44,7 +42,6 @@ git clone https://github.com/your-username/hexsoftware-todo-list.git
 
 ---
 
----
 Usage
 
 Click "Add Task" to create a new task.
@@ -61,7 +58,6 @@ Toggle dark/light mode using the button in the navbar.
 
 ---
 
----
 Technologies Used
 
 HTML5 & CSS3
@@ -91,7 +87,3 @@ LinkedIn: https://www.linkedin.com/in/janvi-lumbhani-1580ab2a9/
 
 
 ---
-
-
-Contributing## Folder Structure
-
