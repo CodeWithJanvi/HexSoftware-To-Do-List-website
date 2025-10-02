@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loader.classList.add("d-none");
     app.classList.remove("d-none");
-  }, 2000);
+  }, 4000);
 
   // Elements
   const taskForm = document.getElementById("taskForm");
@@ -205,3 +205,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== Initial Render =====
   renderTasks();
 });
+
